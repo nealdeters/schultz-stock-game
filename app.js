@@ -120,7 +120,8 @@ var controller = (function(listCtrl, UICtrl){
   }
 
   var urlCall = {
-    deep: 'https://api.iextrading.com/1.0/deep?symbols='
+    deep: 'https://api.iextrading.com/1.0/deep?symbols=',
+    last: 'https://api.iextrading.com/1.0/tops/last?symbols='
   }
 
   var apiCall = function(ticker, url){
@@ -139,16 +140,16 @@ var controller = (function(listCtrl, UICtrl){
   var totalGainLoss = 0;
 
   var appendPlayerData = function(player){
-    return apiCall(player.ticker, urlCall.deep).then(function(response){
-      var value = (player.shares * response.lastSalePrice);
+    return apiCall(player.ticker, urlCall.last).then(function(response){
+      var value = (player.shares * response[0].price);
       var gainLoss = value - player.investedCapital;
 
       var obj = {
         fullName: player.firstName + ' ' + player.lastName,
-        ticker: response.symbol,
+        ticker: response[0].symbol,
         cost: player.startPrice.toFixed(2),
         shares: player.shares.toFixed(2),
-        price: response.lastSalePrice.toFixed(2),
+        price: response[0].price.toFixed(2),
         value: value.toFixed(2),
         gainLoss: gainLoss.toFixed(2),
         percent: null

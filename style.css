@@ -24,8 +24,8 @@ body {
 }
 
 .right { float: right; }
-.red { color: #FF5049 !important; }
-.red-focus:focus { border: 1px solid #FF5049 !important; }
+.red { color: #ff6666 !important; }
+.red-focus:focus { border: 1px solid #ff6666 !important; }
 
 /**********************************************
 *** TOP PART
@@ -71,11 +71,11 @@ body {
 
 .budget__income {
     margin-bottom: 10px;
-    background-color: #28B9B5;
+    background-color: #329932;
 }
 
 .budget__expenses {
-    background-color: #FF5049;
+    background-color: #ff6666;
 }
 
 .budget__income--text,
@@ -155,8 +155,8 @@ h2 {
     margin-bottom: 15px;
 }
 
-.income__title { color: #28B9B5; }
-.expenses__title { color: #FF5049; }
+.income__title { color: #329932; }
+.expenses__title { color: #ff6666; }
 
 .item__percentage {
     float: left;
