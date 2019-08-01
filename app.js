@@ -151,13 +151,59 @@ var controller = (function(playerCtrl, UICtrl){
       for(var key in obj){
         // create the div with class
         var div = document.createElement('div');
-        div.className = 'list-item';
-        div.textContent = obj[key];
+
+        switch(key){
+          case 'gainLoss':
+            if(gainLoss > 0){
+              div.className = 'list-item income__title';
+            } else {
+              div.className = 'list-item expenses__title'
+            }
+
+            div.textContent = obj[key];
+            break;
+          default:
+            div.className = 'list-item';
+            div.textContent = obj[key];
+        }
 
         // append div to list
         list.appendChild(div);
       }
     })
+  }
+
+  function sortList() {
+    var list, i, switching, b, shouldSwitch;
+    list = document.querySelector(UICtrl.getDOMstrings().listContainer);
+    switching = true;
+    /* Make a loop that will continue until
+    no switching has been done: */
+    while (switching) {
+      // start by saying: no switching is done:
+      switching = false;
+      b = list.getElementsByTagName("div");
+      // Loop through all list-items:
+      for (i = 0; i < (b.length - 1); i++) {
+        // start by saying there should be no switching:
+        shouldSwitch = false;
+        /* check if the next item should
+        switch place with the current item: */
+        if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
+          /* if next item is alphabetically
+          lower than current item, mark as a switch
+          and break the loop: */
+          shouldSwitch = true;
+          break;
+        }
+      }
+      if (shouldSwitch) {
+        /* If a switch has been marked, make the switch
+        and mark the switch as done: */
+        b[i].parentNode.insertBefore(b[i + 1], b[i]);
+        switching = true;
+      }
+    }
   }
 
   var fetchPlayerData = function(){
@@ -169,7 +215,7 @@ var controller = (function(playerCtrl, UICtrl){
     })
 
     Promise.all(promises).then(function(values) {
-
+      // sortList();
     });
   }
 

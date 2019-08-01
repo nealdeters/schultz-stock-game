@@ -124,6 +124,7 @@ body {
   grid-template-columns: repeat(7, 14.3%);
   padding: 0 10px 10px 10px;
   overflow: auto;
+  max-height: 500px;
 }
 
 .header-item {
@@ -154,7 +155,7 @@ h2 {
     margin-bottom: 15px;
 }
 
-.icome__title { color: #28B9B5; }
+.income__title { color: #28B9B5; }
 .expenses__title { color: #FF5049; }
 
 .item__percentage {
