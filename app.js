@@ -56,7 +56,8 @@ var playerController = (function(){
 var UIController = (function(){
   
   var DOMstrings = {
-    listContainer: '.list-container'
+    listContainer: '.list-container',
+    totalTitle: '.budget__value'
   }
 
   return {
@@ -131,6 +132,8 @@ var controller = (function(playerCtrl, UICtrl){
     });
   }
 
+  var totalGainLoss = 0;
+
   var appendPlayerData = function(player){
     return apiCall(player.ticker, urlCall.deep).then(function(response){
       var value = (player.shares * response.lastSalePrice);
@@ -143,8 +146,12 @@ var controller = (function(playerCtrl, UICtrl){
         shares: player.shares.toFixed(2),
         price: response.lastSalePrice.toFixed(2),
         value: value.toFixed(2),
-        gainLoss: gainLoss.toFixed(2)
+        gainLoss: gainLoss.toFixed(2),
+        percent: null
       }
+
+
+      totalGainLoss += gainLoss;
 
       var list = document.querySelector(UICtrl.getDOMstrings().listContainer);
       
@@ -155,9 +162,9 @@ var controller = (function(playerCtrl, UICtrl){
         switch(key){
           case 'gainLoss':
             if(gainLoss > 0){
-              div.className = 'list-item income__title';
+              div.className = 'list-item income__title gainLoss';
             } else {
-              div.className = 'list-item expenses__title'
+              div.className = 'list-item expenses__title gainLoss';
             }
 
             div.textContent = obj[key];
@@ -173,39 +180,6 @@ var controller = (function(playerCtrl, UICtrl){
     })
   }
 
-  function sortList() {
-    var list, i, switching, b, shouldSwitch;
-    list = document.querySelector(UICtrl.getDOMstrings().listContainer);
-    switching = true;
-    /* Make a loop that will continue until
-    no switching has been done: */
-    while (switching) {
-      // start by saying: no switching is done:
-      switching = false;
-      b = list.getElementsByTagName("div");
-      // Loop through all list-items:
-      for (i = 0; i < (b.length - 1); i++) {
-        // start by saying there should be no switching:
-        shouldSwitch = false;
-        /* check if the next item should
-        switch place with the current item: */
-        if (b[i].innerHTML.toLowerCase() > b[i + 1].innerHTML.toLowerCase()) {
-          /* if next item is alphabetically
-          lower than current item, mark as a switch
-          and break the loop: */
-          shouldSwitch = true;
-          break;
-        }
-      }
-      if (shouldSwitch) {
-        /* If a switch has been marked, make the switch
-        and mark the switch as done: */
-        b[i].parentNode.insertBefore(b[i + 1], b[i]);
-        switching = true;
-      }
-    }
-  }
-
   var fetchPlayerData = function(){
     var players = playerCtrl.getPlayers();
     var promises = [];
@@ -215,7 +189,13 @@ var controller = (function(playerCtrl, UICtrl){
     })
 
     Promise.all(promises).then(function(values) {
-      // sortList();
+      var totalTitle = document.querySelector(UICtrl.getDOMstrings().totalTitle);
+      totalTitle.innerHTML = totalGainLoss.toFixed(2);
+      if(totalGainLoss){
+        totalTitle.classList = 'budget__value income__title';
+      } else {
+        totalTitle.classList = 'budget__value expenses__title';
+      }
     });
   }
 
