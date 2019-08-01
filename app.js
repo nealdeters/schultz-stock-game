@@ -121,7 +121,8 @@ var controller = (function(listCtrl, UICtrl){
 
   var urlCall = {
     deep: 'https://api.iextrading.com/1.0/deep?symbols=',
-    last: 'https://api.iextrading.com/1.0/tops/last?symbols='
+    last: 'https://api.iextrading.com/1.0/tops/last?symbols=',
+    yahooFinance: 'https://finance.yahoo.com/quote/'
   }
 
   var apiCall = function(ticker, url){
@@ -179,7 +180,7 @@ var controller = (function(listCtrl, UICtrl){
           case 'ticker':
             div = document.createElement('a');
             div.setAttribute('target', '_blank');
-            div.setAttribute('href', 'https://www.google.com/search?q=' + obj[key] + '&tbm=fin');
+            div.setAttribute('href', urlCall.yahooFinance + obj[key]);
             div.className = 'list-item';
             div.textContent = obj[key];
             break;
