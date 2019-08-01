@@ -1,7 +1,15 @@
-// API KEY: EJASM1XUMF7RGB4B
+// TODO
+// move api calls to list controller
+// function for data fetch - collect all data in player object under stock
+// function for totalGainLoss
+// sort list by top gain
+// switch to table or include grid row definition
+// make page responsive with mobile call and media queries to remove rows
+// define header and body at vh values for perfect fit
+// use tops calls instead of deep...only really need the price
 
-// BUDGET CONTROLLER
-var playerController = (function(){
+// LIST CONTROLLER
+var listController = (function(){
   
   var Player = function(id, firstName, lastName, ticker, startPrice){
     this.id = id;
@@ -43,11 +51,7 @@ var playerController = (function(){
 
     getPlayers: function(){
       return data.allPlayers;
-    },
-
-    // testing: function(){
-    //   console.log(data);
-    // }
+    }
   }
 
 })();
@@ -69,50 +73,50 @@ var UIController = (function(){
 })();
 
 // GLOBAL APP CONTROLLER
-var controller = (function(playerCtrl, UICtrl){
+var controller = (function(listCtrl, UICtrl){
   
   var playerSetup = function(){
     // Deters Family
-    playerCtrl.addPlayer('Neal', 'Deters', 'CARA', 14.56);
-    playerCtrl.addPlayer('Jeff', 'Deters', 'CRM', 135.55);
-    playerCtrl.addPlayer('Scott', 'Deters', 'NFLX', 267.66);
-    playerCtrl.addPlayer('Alex', 'Deters', 'GOOGL', 1054.68);
-    playerCtrl.addPlayer('Caroline', 'Deters', 'VALE', 13.47);
+    listCtrl.addPlayer('Neal', 'Deters', 'CARA', 14.56);
+    listCtrl.addPlayer('Jeff', 'Deters', 'CRM', 135.55);
+    listCtrl.addPlayer('Scott', 'Deters', 'NFLX', 267.66);
+    listCtrl.addPlayer('Alex', 'Deters', 'GOOGL', 1054.68);
+    listCtrl.addPlayer('Caroline', 'Deters', 'VALE', 13.47);
 
     // Bob Schultz Family
-    playerCtrl.addPlayer('Christo', 'Schultz', 'YETI', 16.17);
-    playerCtrl.addPlayer('Emmie', 'Schultz', 'AMZN', 1539.13);
+    listCtrl.addPlayer('Christo', 'Schultz', 'YETI', 16.17);
+    listCtrl.addPlayer('Emmie', 'Schultz', 'AMZN', 1539.13);
 
     // Jim Schultz Family
-    playerCtrl.addPlayer('Jamie', 'Schultz', 'ACB', 5.24);
-    playerCtrl.addPlayer('John', 'Schultz', 'CGC', 28.92);
-    playerCtrl.addPlayer('Charlie', 'Schultz', 'CSIQ', 14.44);
+    listCtrl.addPlayer('Jamie', 'Schultz', 'ACB', 5.24);
+    listCtrl.addPlayer('John', 'Schultz', 'CGC', 28.92);
+    listCtrl.addPlayer('Charlie', 'Schultz', 'CSIQ', 14.44);
 
     // Schmidt Family
-    playerCtrl.addPlayer('Ryan', 'Schmidt', 'TWLO', 86.97);
-    playerCtrl.addPlayer('Mark', 'Schmidt', 'CRON', 11.31);
-    playerCtrl.addPlayer('Megan', 'Schmidt', 'MCRN', 12.16);
-    playerCtrl.addPlayer('Michael', 'Schmidt', 'MS', 40.40);
-    playerCtrl.addPlayer('Sarah', 'Schmidt', 'GOLD', 13.10);
-    playerCtrl.addPlayer('Laura', 'Schmidt', 'MCRN', 12.16);
+    listCtrl.addPlayer('Ryan', 'Schmidt', 'TWLO', 86.97);
+    listCtrl.addPlayer('Mark', 'Schmidt', 'CRON', 11.31);
+    listCtrl.addPlayer('Megan', 'Schmidt', 'MCRN', 12.16);
+    listCtrl.addPlayer('Michael', 'Schmidt', 'MS', 40.40);
+    listCtrl.addPlayer('Sarah', 'Schmidt', 'GOLD', 13.10);
+    listCtrl.addPlayer('Laura', 'Schmidt', 'MCRN', 12.16);
 
     // Jack Schultz Family
-    playerCtrl.addPlayer('James', 'Schultz', 'AMD', 18.83);
-    playerCtrl.addPlayer('Joseph', 'Schultz', 'DIS', 108.97);
+    listCtrl.addPlayer('James', 'Schultz', 'AMD', 18.83);
+    listCtrl.addPlayer('Joseph', 'Schultz', 'DIS', 108.97);
 
     // Kaldas Family
-    playerCtrl.addPlayer('Nardeen', 'Kaldas', 'ULTA', 247.97);
-    playerCtrl.addPlayer('Michael', 'Kaldas', 'INTC', 47.08);
+    listCtrl.addPlayer('Nardeen', 'Kaldas', 'ULTA', 247.97);
+    listCtrl.addPlayer('Michael', 'Kaldas', 'INTC', 47.08);
 
     // Tawdros Family
-    playerCtrl.addPlayer('Jenny', 'Tawdros', 'MSFT', 101.12);
-    playerCtrl.addPlayer('Joyce', 'Tawdros', 'AAL', 32.48);
+    listCtrl.addPlayer('Jenny', 'Tawdros', 'MSFT', 101.12);
+    listCtrl.addPlayer('Joyce', 'Tawdros', 'AAL', 32.48);
 
     // Lacksen Family
-    playerCtrl.addPlayer('Katherine', 'Lacksen', 'CRR', 3.74);
-    playerCtrl.addPlayer('Elizabeth', 'Lacksen', 'PFE', 43.25);
-    playerCtrl.addPlayer('Larry', 'Lacksen', 'ADBE', 224.57);
-    playerCtrl.addPlayer('Will', 'Lacksen', 'AAPL', 157.92);
+    listCtrl.addPlayer('Katherine', 'Lacksen', 'CRR', 3.74);
+    listCtrl.addPlayer('Elizabeth', 'Lacksen', 'PFE', 43.25);
+    listCtrl.addPlayer('Larry', 'Lacksen', 'ADBE', 224.57);
+    listCtrl.addPlayer('Will', 'Lacksen', 'AAPL', 157.92);
   }
 
   var urlCall = {
@@ -181,7 +185,7 @@ var controller = (function(playerCtrl, UICtrl){
   }
 
   var fetchPlayerData = function(){
-    var players = playerCtrl.getPlayers();
+    var players = listCtrl.getPlayers();
     var promises = [];
 
     players.forEach(function(player){
@@ -209,7 +213,7 @@ var controller = (function(playerCtrl, UICtrl){
     }
   }
 
-})(playerController, UIController);
+})(listController, UIController);
 
 // initialize the budget app
 controller.init();
