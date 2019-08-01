@@ -162,10 +162,11 @@ var controller = (function(listCtrl, UICtrl){
       
       for(var key in obj){
         // create the div with class
-        var div = document.createElement('div');
+        var div;
 
         switch(key){
           case 'gainLoss':
+            div = document.createElement('div');
             if(gainLoss > 0){
               div.className = 'list-item income__title gainLoss';
             } else {
@@ -174,7 +175,17 @@ var controller = (function(listCtrl, UICtrl){
 
             div.textContent = obj[key];
             break;
+
+          case 'ticker':
+            div = document.createElement('a');
+            div.setAttribute('target', '_blank');
+            div.setAttribute('href', 'https://www.google.com/search?q=' + obj[key] + '&tbm=fin');
+            div.className = 'list-item';
+            div.textContent = obj[key];
+            break;
+
           default:
+            div = document.createElement('div');
             div.className = 'list-item';
             div.textContent = obj[key];
         }
