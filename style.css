@@ -38,8 +38,7 @@ body {
 **********************************************/
 
 .top {
-    height: 20vh;
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));*/
+    height: 135px;
     background-color: #eee;
     background-size: cover;
     background-position: center;
@@ -85,7 +84,7 @@ body {
 .table > thead tr:nth-child(1) th{
     position: sticky;
     background-color: white;
-    top: 20vh;
+    top: 135px;
     z-index: 10;
 }
 
