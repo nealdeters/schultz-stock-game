@@ -59,8 +59,6 @@ var listController = (function(){
   }
 
   var getGainLoss = function(value, cost){
-    // console.log(typeof value)
-    // console.log(typeof cost)
     return (value - cost);
   }
 
@@ -107,6 +105,10 @@ var listController = (function(){
         }
           data.allPlayers[i].rank = rank;
       }
+    },
+
+    clearTotalGainLoss: function(){
+      data.totalGainLoss = 0;
     },
 
     getTotalGainLoss: function(){
@@ -192,6 +194,13 @@ var UIController = (function(){
 
         list.appendChild(row)
       })
+    },
+
+    clearList: function(){
+      var list = document.querySelector(DOMstrings.tableBody);
+      while (list.hasChildNodes()) {
+          list.removeChild(list.lastChild);
+      }
     }
   }
 
@@ -269,6 +278,10 @@ var controller = (function(listCtrl, UICtrl){
   }
 
   var fetchPlayerData = function(){
+    // clear any previous list
+    UICtrl.clearList();
+    listCtrl.clearTotalGainLoss()
+
     var players = listCtrl.getPlayers();
     var promises = [];
 
@@ -289,6 +302,10 @@ var controller = (function(listCtrl, UICtrl){
         totalTitle.innerHTML = totalGainLoss;
         totalTitle.classList = 'budget__value expenses__title';
       }
+
+      setTimeout(function() {
+        fetchPlayerData();
+      }, 60000)
     });
   }
 
