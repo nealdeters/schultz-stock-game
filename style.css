@@ -110,9 +110,21 @@ body {
 }
 
 /***** LISTS *****/
+.table {
+    width: 100%;
+}
+
+.table-body {
+
+}
+
 .container {
     width: 1000px;
     margin: 60px auto;
+}
+
+.grid-row {
+    grid-row: 1;
 }
 
 .header-container {

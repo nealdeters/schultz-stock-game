@@ -1,30 +1,81 @@
 // TODO
-// move api calls to list controller
-// function for data fetch - collect all data in player object under stock
-// function for totalGainLoss
-// sort list by top gain
-// switch to table or include grid row definition
-// make page responsive with mobile call and media queries to remove rows
-// define header and body at vh values for perfect fit
-// use tops calls instead of deep...only really need the price
+// value
+// price
+// gainLoss
+
+// all set as strings when should be numbers
+
+// URLS
+var urlCall = {
+  deep: 'https://api.iextrading.com/1.0/deep?symbols=',
+  last: 'https://api.iextrading.com/1.0/tops/last?symbols=',
+  yahooFinance: 'https://finance.yahoo.com/quote/'
+}
 
 // LIST CONTROLLER
 var listController = (function(){
+
+  var self = this;
+  
+  var data = {
+    allPlayers: [],
+    totalGainLoss: 0
+  }
   
   var Player = function(id, firstName, lastName, ticker, startPrice){
+    var self = this;
+    var investedCapital = 5000;
     this.id = id;
-    this.investedCapital = 5000;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.ticker = ticker;
-    
-    // have to hard code to avoid costs
-    this.startPrice = startPrice;
-    this.shares = (this.investedCapital/this.startPrice);
+    this.rank = null;
+    this.percentChange = null;
+    this.stock = {
+      ticker: ticker,
+      startPrice: startPrice,
+      value: null,
+      cost: investedCapital,
+      shares: (investedCapital/startPrice),
+      gainLoss: null,
+      price: null
+    }
   }
 
-  var data = {
-    allPlayers: []
+  Player.prototype.getFullName = function(){
+    return this.firstName + ' ' + this.lastName;
+  };
+
+  Player.prototype.setGainLoss = function(value){
+    this.stock.gainLoss = (value - this.stock.cost);
+    return this.gainLoss;
+  };
+
+  Player.prototype.setValue = function(price){
+    this.stock.value = (this.stock.shares * price);
+    return this.stock.value;
+  };
+
+  Player.prototype.setPercentChange = function(){
+    var change = this.stock.price - this.stock.startPrice;
+    var percent = change/this.stock.startPrice;
+    this.percentChange = percent * 100;
+  }
+
+  Player.prototype.setStockPrice = function(price){
+    this.stock.price = price;
+  }
+
+  var getGainLoss = function(value, cost){
+    // console.log(typeof value)
+    // console.log(typeof cost)
+    return (value - cost);
+  }
+
+  var calculateTotalGainLoss = function(){
+    data.allPlayers.forEach(function(player){
+      var gainLoss = parseInt(getGainLoss(player.stock.value, player.stock.cost));
+      data.totalGainLoss += gainLoss;
+    })
   }
 
   return {
@@ -49,6 +100,27 @@ var listController = (function(){
       return newPlayer;
     },
 
+    calculateRankings: function(){
+      // change sort function
+      data.allPlayers.sort(function(a, b){
+          return b.stock.value - a.stock.value;
+      });
+
+      var rank = 1;
+      for (var i = 0; i < data.allPlayers.length; i++) {
+        // increase rank only if current stock.value less than previous
+        if (i > 0 && data.allPlayers[i].stock.value < data.allPlayers[i - 1].stock.value) {
+          rank++;
+        }
+          data.allPlayers[i].rank = rank;
+      }
+    },
+
+    getTotalGainLoss: function(){
+      calculateTotalGainLoss();
+      return data.totalGainLoss.toFixed(2);
+    },
+
     getPlayers: function(){
       return data.allPlayers;
     }
@@ -61,12 +133,68 @@ var UIController = (function(){
   
   var DOMstrings = {
     listContainer: '.list-container',
-    totalTitle: '.budget__value'
+    totalTitle: '.budget__value',
+    tableBody: '.table-body'
   }
 
   return {
     getDOMstrings: function(){
       return DOMstrings;
+    },
+
+    appendList: function(players){
+      players.forEach(function(player){
+        var obj = {
+          rank: player.rank,
+          fullName: player.getFullName(),
+          ticker: player.stock.ticker,
+          shares: player.stock.shares.toFixed(2),
+          cost: player.stock.startPrice.toFixed(2),
+          price: player.stock.price.toFixed(2),
+          value: player.stock.value.toFixed(2),
+          gainLoss: player.stock.gainLoss.toFixed(2),
+          percent: player.percentChange.toFixed(2) + '%'
+        }
+
+        var list = document.querySelector(DOMstrings.tableBody);
+        var row = document.createElement('tr');
+
+        for(var key in obj){
+          // create the div with class
+          var element;
+
+          switch(key){
+            case 'gainLoss':
+              element = document.createElement('td');
+              if(obj[key] > 0){
+                element.className = 'list-item income__title gainLoss';
+              } else {
+                element.className = 'list-item expenses__title gainLoss';
+              }
+
+              element.textContent = obj[key];
+              break;
+
+            case 'ticker':
+              element = document.createElement('td');
+              element.setAttribute('target', '_blank');
+              element.setAttribute('href', urlCall.yahooFinance + obj[key]);
+              element.className = 'list-item';
+              element.textContent = obj[key];
+              break;
+
+            default:
+              element = document.createElement('td');
+              element.className = 'list-item';
+              element.textContent = obj[key];
+          }
+
+          // append div to list
+          row.appendChild(element)
+        }
+
+        list.appendChild(row)
+      })
     }
   }
 
@@ -117,12 +245,8 @@ var controller = (function(listCtrl, UICtrl){
     listCtrl.addPlayer('Elizabeth', 'Lacksen', 'PFE', 43.25);
     listCtrl.addPlayer('Larry', 'Lacksen', 'ADBE', 224.57);
     listCtrl.addPlayer('Will', 'Lacksen', 'AAPL', 157.92);
-  }
 
-  var urlCall = {
-    deep: 'https://api.iextrading.com/1.0/deep?symbols=',
-    last: 'https://api.iextrading.com/1.0/tops/last?symbols=',
-    yahooFinance: 'https://finance.yahoo.com/quote/'
+    fetchPlayerData();
   }
 
   var apiCall = function(ticker, url){
@@ -138,62 +262,12 @@ var controller = (function(listCtrl, UICtrl){
     });
   }
 
-  var totalGainLoss = 0;
-
-  var appendPlayerData = function(player){
-    return apiCall(player.ticker, urlCall.last).then(function(response){
-      var value = (player.shares * response[0].price);
-      var gainLoss = value - player.investedCapital;
-
-      var obj = {
-        fullName: player.firstName + ' ' + player.lastName,
-        ticker: response[0].symbol,
-        cost: player.startPrice.toFixed(2),
-        shares: player.shares.toFixed(2),
-        price: response[0].price.toFixed(2),
-        value: value.toFixed(2),
-        gainLoss: gainLoss.toFixed(2),
-        percent: null
-      }
-
-
-      totalGainLoss += gainLoss;
-
-      var list = document.querySelector(UICtrl.getDOMstrings().listContainer);
-      
-      for(var key in obj){
-        // create the div with class
-        var div;
-
-        switch(key){
-          case 'gainLoss':
-            div = document.createElement('div');
-            if(gainLoss > 0){
-              div.className = 'list-item income__title gainLoss';
-            } else {
-              div.className = 'list-item expenses__title gainLoss';
-            }
-
-            div.textContent = obj[key];
-            break;
-
-          case 'ticker':
-            div = document.createElement('a');
-            div.setAttribute('target', '_blank');
-            div.setAttribute('href', urlCall.yahooFinance + obj[key]);
-            div.className = 'list-item';
-            div.textContent = obj[key];
-            break;
-
-          default:
-            div = document.createElement('div');
-            div.className = 'list-item';
-            div.textContent = obj[key];
-        }
-
-        // append div to list
-        list.appendChild(div);
-      }
+  var getPlayerData = function(player){
+    return apiCall(player.stock.ticker, urlCall.last).then(function(response){
+      player.setStockPrice(response[0].price);
+      player.setValue(response[0].price);
+      player.setGainLoss(player.stock.value);
+      player.setPercentChange();
     })
   }
 
@@ -202,13 +276,17 @@ var controller = (function(listCtrl, UICtrl){
     var promises = [];
 
     players.forEach(function(player){
-      promises.push(appendPlayerData(player));
+      promises.push(getPlayerData(player));
     })
 
     Promise.all(promises).then(function(values) {
+      listCtrl.calculateRankings();
+      UICtrl.appendList(listCtrl.getPlayers());
+
       var totalTitle = document.querySelector(UICtrl.getDOMstrings().totalTitle);
-      totalTitle.innerHTML = totalGainLoss.toFixed(2);
-      if(totalGainLoss){
+      var totalGainLoss = listCtrl.getTotalGainLoss();
+      totalTitle.innerHTML = totalGainLoss;
+      if(totalGainLoss > 0){
         totalTitle.classList = 'budget__value income__title';
       } else {
         totalTitle.classList = 'budget__value expenses__title';
@@ -222,7 +300,6 @@ var controller = (function(listCtrl, UICtrl){
   return {
     init: function(){
       playerSetup();
-      fetchPlayerData();
     }
   }
 
