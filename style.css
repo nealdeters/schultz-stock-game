@@ -49,22 +49,20 @@ body {
 }
 
 .robinhood_signup {
-    position: relative;
-    float: right;
-    margin: 5px 10px 5px 10px;
+    text-align: center;
+    display: block;
+    font-size: 12px;
 }
 
 .header {
     position: relative;
-    width: 350px;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: auto;
+    padding-top: 15px;
     color: #fff;
 }
 
 .header__title {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 10px;
     font-weight: 300;
@@ -75,7 +73,7 @@ body {
     font-weight: 300;
     font-size: 40px;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
     letter-spacing: 2px;
 }
 
