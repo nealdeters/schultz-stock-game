@@ -285,10 +285,11 @@ var controller = (function(listCtrl, UICtrl){
 
       var totalTitle = document.querySelector(UICtrl.getDOMstrings().totalTitle);
       var totalGainLoss = listCtrl.getTotalGainLoss();
-      totalTitle.innerHTML = totalGainLoss;
       if(totalGainLoss > 0){
+        totalTitle.innerHTML = '+ ' + totalGainLoss;
         totalTitle.classList = 'budget__value income__title';
       } else {
+        totalTitle.innerHTML = totalGainLoss;
         totalTitle.classList = 'budget__value expenses__title';
       }
     });
