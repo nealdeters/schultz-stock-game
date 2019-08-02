@@ -8,6 +8,14 @@
     box-sizing: border-box;
 }
 
+a, a:hover  {
+    color: #498ae3;
+}
+
+a:focus, a:visited: {
+    color: #102176;
+}
+
 .clearfix::after {
     content: "";
     display: table;
@@ -24,8 +32,6 @@ body {
 }
 
 .right { float: right; }
-.red { color: #ff6666 !important; }
-.red-focus:focus { border: 1px solid #ff6666 !important; }
 
 /**********************************************
 *** TOP PART
@@ -42,73 +48,35 @@ body {
     top: 0;
 }
 
-.budget {
+.robinhood_signup {
+    position: relative;
+    float: right;
+    margin: 5px 10px 5px 10px;
+}
+
+.header {
     position: relative;
     width: 350px;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: #fff;
 }
 
-.budget__title {
-    font-size: 18px;
+.header__title {
+    font-size: 24px;
     text-align: center;
     margin-bottom: 10px;
     font-weight: 300;
     color: #555;
 }
 
-.budget__value {
+.header__value {
     font-weight: 300;
-    font-size: 46px;
+    font-size: 40px;
     text-align: center;
     margin-bottom: 25px;
     letter-spacing: 2px;
-}
-
-.budget__income,
-.budget__expenses {
-    padding: 12px;
-    text-transform: uppercase;
-}
-
-.budget__income {
-    margin-bottom: 10px;
-    background-color: #329932;
-}
-
-.budget__expenses {
-    background-color: #ff6666;
-}
-
-.budget__income--text,
-.budget__expenses--text {
-    float: left;
-    font-size: 13px;
-    color: #444;
-    margin-top: 2px;
-}
-
-.budget__income--value,
-.budget__expenses--value {
-    letter-spacing: 1px;
-    float: left;
-}
-
-.budget__income--percentage,
-.budget__expenses--percentage {
-    float: left;
-    width: 34px;
-    font-size: 11px;
-    padding: 3px 0;
-    margin-left: 10px;
-}
-
-.budget__expenses--percentage {
-    background-color: rgba(255, 255, 255, 0.2);
-    text-align: center;
-    border-radius: 3px;
 }
 
 /***** LISTS *****/
@@ -123,61 +91,12 @@ body {
     z-index: 10;
 }
 
-/*.table > tbody tr:nth-child(2n){
-  background-color: #eee;
-}*/
-
 .table tr:nth-child(1), tr:nth-child(2), tr:nth-child(3) {
-    background-color: #e5f2e5;
+    background-color: #e7f6e9;
 }
 
-.table-body {
-
-}
-
-.container {
-    width: 1000px;
-    margin: 60px auto;
-}
-
-.grid-row {
-    grid-row: 1;
-}
-
-.header-container {
-  display: grid;
-  grid-template-columns: repeat(8, 12.5%);
-  padding: 10px 10px 0 10px;
-  height: 10vh;
-}
-
-.list-container {
-  display: grid;
-  grid-template-columns: repeat(8, 12.5%);
-  padding: 0 10px 10px 10px;
-  overflow: auto;
-  height: 70vh;
-}
-
-.header-item {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.header-item, .list-item {
-  border: 1px solid rgba(0, 0, 0, 0.8);
+.list-item {
   text-align: center;
-}
-
-.income {
-    float: left;
-    width: 475px;
-    margin-right: 50px;
-}
-
-.expenses {
-    float: left;
-    width: 475px;
 }
 
 h2 {
@@ -187,21 +106,8 @@ h2 {
     margin-bottom: 15px;
 }
 
-.income__title { color: #329932; }
-.expenses__title { color: #ff6666; }
-
-.item__percentage {
-    float: left;
-    margin-left: 20px;
-    transition: transform 0.3s;
-    font-size: 11px;
-    background-color: #FFDAD9;
-    padding: 3px;
-    border-radius: 3px;
-    width: 32px;
-    text-align: center;
-}
-
+.positive__title { color: #14a52c; }
+.negative__title { color: #983c3c; }
 
 @media only screen and (max-width: 600px) {
     .shares, .cost, .price {

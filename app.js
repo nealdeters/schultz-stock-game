@@ -127,8 +127,7 @@ var listController = (function(){
 var UIController = (function(){
   
   var DOMstrings = {
-    listContainer: '.list-container',
-    totalTitle: '.budget__value',
+    totalTitle: '.header__value',
     tableBody: '.table-body'
   }
 
@@ -162,9 +161,9 @@ var UIController = (function(){
             case 'gainLoss':
               element = document.createElement('td');
               if(obj[key] > 0){
-                element.className = 'list-item income__title gainLoss ' + key;
+                element.className = 'list-item positive__title ' + key;
               } else {
-                element.className = 'list-item expenses__title gainLoss ' + key;
+                element.className = 'list-item negative__title ' + key;
               }
 
               element.textContent = obj[key];
@@ -297,10 +296,10 @@ var controller = (function(listCtrl, UICtrl){
       var totalGainLoss = listCtrl.getTotalGainLoss();
       if(totalGainLoss > 0){
         totalTitle.innerHTML = '+ ' + totalGainLoss;
-        totalTitle.classList = 'budget__value income__title';
+        totalTitle.classList = 'header__value positive__title';
       } else {
         totalTitle.innerHTML = totalGainLoss;
-        totalTitle.classList = 'budget__value expenses__title';
+        totalTitle.classList = 'header__value negative__title';
       }
 
       setTimeout(function() {
