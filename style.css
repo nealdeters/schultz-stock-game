@@ -184,3 +184,10 @@ h2 {
     width: 32px;
     text-align: center;
 }
+
+
+@media only screen and (max-width: 600px) {
+    .shares, .cost, .price {
+        display: none;
+    }
+}

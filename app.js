@@ -167,9 +167,9 @@ var UIController = (function(){
             case 'gainLoss':
               element = document.createElement('td');
               if(obj[key] > 0){
-                element.className = 'list-item income__title gainLoss';
+                element.className = 'list-item income__title gainLoss ' + key;
               } else {
-                element.className = 'list-item expenses__title gainLoss';
+                element.className = 'list-item expenses__title gainLoss ' + key;
               }
 
               element.textContent = obj[key];
@@ -179,13 +179,13 @@ var UIController = (function(){
               element = document.createElement('td');
               element.setAttribute('target', '_blank');
               element.setAttribute('href', urlCall.yahooFinance + obj[key]);
-              element.className = 'list-item';
+              element.className = 'list-item ' + key;
               element.textContent = obj[key];
               break;
 
             default:
               element = document.createElement('td');
-              element.className = 'list-item';
+              element.className = 'list-item ' + key;
               element.textContent = obj[key];
           }
 

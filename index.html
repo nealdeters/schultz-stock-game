@@ -3,7 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
-        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+        <!-- <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1"> -->
+        <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link type="text/css" rel="stylesheet" href="style.css">
         <script src="https://rawgit.com/moment/moment/2.22.1/min/moment.min.js"></script>
         <title>Schultz Family Stock Game</title>
@@ -39,15 +40,15 @@
             
             <table class="table">
               <thead>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Symbol</th>
-                <th>Shares</th>
-                <th>Cost</th>
-                <th>Price</th>
-                <th>Value</th>
-                <th>+/-</th>
-                <th>%</th>
+                <th class="rank">Rank</th>
+                <th class="fullName">Name</th>
+                <th class="symbol">Symbol</th>
+                <th class="shares">Shares</th>
+                <th class="cost">Cost</th>
+                <th class="price">Price</th>
+                <th class="value">Value</th>
+                <th class="gainLoss">+/-</th>
+                <th class="percentChange">%</th>
               </thead>
               <tbody class="table-body"></tbody>
             </table>
