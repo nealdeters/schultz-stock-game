@@ -110,4 +110,12 @@ h2 {
     .shares, .cost, .price {
         display: none;
     }
+
+    .header__title {
+        font-size: 14px;
+    }
+
+    .header__value {
+        font-size: 34px;
+    }
 }
