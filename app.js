@@ -170,10 +170,14 @@ var UIController = (function(){
 
             case 'ticker':
               element = document.createElement('td');
-              element.setAttribute('target', '_blank');
-              element.setAttribute('href', urlCall.yahooFinance + obj[key]);
               element.className = 'list-item ' + key;
-              element.textContent = obj[key];
+
+              var a = document.createElement('a');
+              a.setAttribute('target', '_blank');
+              a.setAttribute('href', urlCall.yahooFinance + obj[key]);
+              a.textContent = obj[key];
+
+              element.appendChild(a);
               break;
 
             default:
