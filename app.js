@@ -1,10 +1,3 @@
-// TODO
-// value
-// price
-// gainLoss
-
-// all set as strings when should be numbers
-
 // URLS
 var urlCall = {
   deep: 'https://api.iextrading.com/1.0/deep?symbols=',
