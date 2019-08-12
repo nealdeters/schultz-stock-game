@@ -228,7 +228,7 @@ var controller = (function(listCtrl, UICtrl){
     // Schmidt Family
     listCtrl.addPlayer('Ryan', 'Schmidt', 'TWLO', 86.97);
     listCtrl.addPlayer('Mark', 'Schmidt', 'CRON', 11.31);
-    listCtrl.addPlayer('Megan', 'Schmidt', 'MCRN', 12.16);
+    listCtrl.addPlayer('Megan', 'Schmidt', 'WFC', 46.94);
     listCtrl.addPlayer('Michael', 'Schmidt', 'MS', 40.40);
     listCtrl.addPlayer('Sarah', 'Schmidt', 'GOLD', 13.10);
     listCtrl.addPlayer('Laura', 'Schmidt', 'MCRN', 12.16);
