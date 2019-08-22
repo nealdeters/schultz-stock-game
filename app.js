@@ -209,47 +209,50 @@ var UIController = (function(){
 var controller = (function(listCtrl, UICtrl){
   
   var playerSetup = function(){
+    // grabbed historial data from start of year from link below
+    // https://www.marketwatch.com/investing/stock/CARA/historical?siteid=mktw&date=&x=18&y=16
+
     // Deters Family
-    listCtrl.addPlayer('Neal', 'Deters', 'CARA', 14.56);
-    listCtrl.addPlayer('Jeff', 'Deters', 'CRM', 135.55);
-    listCtrl.addPlayer('Scott', 'Deters', 'NFLX', 267.66);
-    listCtrl.addPlayer('Alex', 'Deters', 'GOOGL', 1054.68);
-    listCtrl.addPlayer('Caroline', 'Deters', 'VALE', 13.47);
+    listCtrl.addPlayer('Neal', 'Deters', 'CARA', 13.01);
+    listCtrl.addPlayer('Jeff', 'Deters', 'CRM', 133.40);
+    listCtrl.addPlayer('Scott', 'Deters', 'NFLX', 259.28);
+    listCtrl.addPlayer('Alex', 'Deters', 'GOOGL', 1027.20);
+    listCtrl.addPlayer('Caroline', 'Deters', 'VALE', 12.94);
 
     // Bob Schultz Family
-    listCtrl.addPlayer('Christo', 'Schultz', 'YETI', 16.17);
-    listCtrl.addPlayer('Emmie', 'Schultz', 'AMZN', 1539.13);
+    listCtrl.addPlayer('Christo', 'Schultz', 'YETI', 14.73);
+    listCtrl.addPlayer('Emmie', 'Schultz', 'AMZN', 1465.20);
 
     // Jim Schultz Family
-    listCtrl.addPlayer('Jamie', 'Schultz', 'ACB', 5.24);
-    listCtrl.addPlayer('John', 'Schultz', 'CGC', 28.92);
-    listCtrl.addPlayer('Charlie', 'Schultz', 'CSIQ', 14.44);
+    listCtrl.addPlayer('Jamie', 'Schultz', 'ACB', 4.89);
+    listCtrl.addPlayer('John', 'Schultz', 'CGC', 26.52);
+    listCtrl.addPlayer('Charlie', 'Schultz', 'CSIQ', 14.05);
 
     // Schmidt Family
-    listCtrl.addPlayer('Ryan', 'Schmidt', 'TWLO', 86.97);
-    listCtrl.addPlayer('Mark', 'Schmidt', 'CRON', 11.31);
-    listCtrl.addPlayer('Megan', 'Schmidt', 'WFC', 46.94);
-    listCtrl.addPlayer('Michael', 'Schmidt', 'MS', 40.40);
-    listCtrl.addPlayer('Sarah', 'Schmidt', 'GOLD', 13.10);
-    listCtrl.addPlayer('Laura', 'Schmidt', 'MCRN', 12.16);
+    listCtrl.addPlayer('Ryan', 'Schmidt', 'TWLO', 87.45);
+    listCtrl.addPlayer('Mark', 'Schmidt', 'CRON', 10.25);
+    listCtrl.addPlayer('Megan', 'Schmidt', 'WFC', 45.53);
+    listCtrl.addPlayer('Michael', 'Schmidt', 'MS', 39.02);
+    listCtrl.addPlayer('Sarah', 'Schmidt', 'GOLD', 13.64);
+    listCtrl.addPlayer('Laura', 'Schmidt', 'MCRN', 11.70);
 
     // Jack Schultz Family
-    listCtrl.addPlayer('James', 'Schultz', 'AMD', 18.83);
-    listCtrl.addPlayer('Joseph', 'Schultz', 'DIS', 108.97);
+    listCtrl.addPlayer('James', 'Schultz', 'AMD', 18.01);
+    listCtrl.addPlayer('Joseph', 'Schultz', 'DIS', 108.10);
 
     // Kaldas Family
-    listCtrl.addPlayer('Nardeen', 'Kaldas', 'ULTA', 247.97);
-    listCtrl.addPlayer('Michael', 'Kaldas', 'INTC', 47.08);
+    listCtrl.addPlayer('Nardeen', 'Kaldas', 'ULTA', 239.96);
+    listCtrl.addPlayer('Michael', 'Kaldas', 'INTC', 45.96);
 
     // Tawdros Family
-    listCtrl.addPlayer('Jenny', 'Tawdros', 'MSFT', 101.12);
-    listCtrl.addPlayer('Joyce', 'Tawdros', 'AAL', 32.48);
+    listCtrl.addPlayer('Jenny', 'Tawdros', 'MSFT', 99.55);
+    listCtrl.addPlayer('Joyce', 'Tawdros', 'AAL', 31.46);
 
     // Lacksen Family
-    listCtrl.addPlayer('Katherine', 'Lacksen', 'CRR', 3.74);
-    listCtrl.addPlayer('Elizabeth', 'Lacksen', 'PFE', 43.25);
-    listCtrl.addPlayer('Larry', 'Lacksen', 'ADBE', 224.57);
-    listCtrl.addPlayer('Will', 'Lacksen', 'AAPL', 157.92);
+    listCtrl.addPlayer('Katherine', 'Lacksen', 'CRR', 3.38);
+    listCtrl.addPlayer('Elizabeth', 'Lacksen', 'PFE', 43.12);
+    listCtrl.addPlayer('Larry', 'Lacksen', 'ADBE', 219.91);
+    listCtrl.addPlayer('Will', 'Lacksen', 'AAPL', 154.89);
 
     fetchPlayerData();
   }
