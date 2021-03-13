@@ -1,45 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <link type="text/css" rel="stylesheet" href="style.css">
-        <script src="https://rawgit.com/moment/moment/2.22.1/min/moment.min.js"></script>
-        <title>Schultz Stock Game</title>
-    </head>
-    <body>
-        
-        <div class="top">
-            <div class="header">
-                <div class="header__title">
-                    Schultz Stock Game
-                </div>
-                
-                <div class="header__value"></div>
-            </div>
-            <a href="http://share.robinhood.com/neald9" class="robinhood_signup" target="_blank">Get a FREE Stock</a>
-        </div>
-        
-        
-        
-        <div class="bottom">            
-            <table class="table">
-              <thead>
-                <th class="rank">Rank</th>
-                <th class="fullName">Name</th>
-                <th class="symbol">Symbol</th>
-                <th class="shares">Shares</th>
-                <th class="cost">Cost</th>
-                <th class="price">Price</th>
-                <th class="value">Value</th>
-                <th class="gainLoss">+/-</th>
-                <th class="percentChange">%</th>
-              </thead>
-              <tbody class="table-body"></tbody>
-            </table>
-        </div>
-        
-        <script src="app.js"></script>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:100,300,400,600" rel="stylesheet" type="text/css">
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <link type="text/css" rel="stylesheet" href="style.css">
+  
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://rawgit.com/moment/moment/2.22.1/min/moment.min.js"></script>
+  
+  <title>Schultz Stock Game</title>
+</head>
+<body>
+  
+  <div class="top">
+    <div class="header">
+      <div class="header__title">
+        Schultz Stock Game
+      </div>
+      
+      <div class="header__value"></div>
+    </div>
+  </div>
+  
+  <!-- <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Schultz Stock Game</a>
+        <div class="header__value"></div>
+      </div>
+      
+    </nav>
+  </div> -->
+  
+  
+  
+  <div class="bottom">            
+    <table class="table centered">
+      <thead>
+        <th class="rank">Rank</th>
+        <th class="fullName">Name</th>
+        <th class="symbol">Symbol</th>
+        <th class="shares">Shares</th>
+        <th class="cost">Cost</th>
+        <th class="price">Price</th>
+        <th class="value">Value</th>
+        <th class="gainLoss">+/-</th>
+        <th class="percentChange">%</th>
+      </thead>
+      <tbody class="table-body"></tbody>
+    </table>
+  </div>
+  
+  <script src="app.js"></script>
+</body>
 </html>
