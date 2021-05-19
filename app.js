@@ -213,32 +213,32 @@ const controller = (function(listCtrl, UICtrl){
     // https://finance.yahoo.com/quote/CRM/history?period1=1548828000&period2=1548828000&interval=1d&filter=history&frequency=1d
 
     // Deters Family
-    listCtrl.addPlayer('Neal', 'Deters', 'ENPH', 31.52)
-    listCtrl.addPlayer('Jeff', 'Deters', 'CRM', 182.25)
-    listCtrl.addPlayer('Scott', 'Deters', 'NFLX', 345.09)
-    listCtrl.addPlayer('Alex', 'Deters', 'CSCO', 45.97)
-    listCtrl.addPlayer('Caroline', 'Deters', 'DIS', 138.30)
+    listCtrl.addPlayer('Neal', 'Deters', 'PLUG', 69.56)
+    listCtrl.addPlayer('Jeff', 'Deters', 'VGT', 367.95)
+    listCtrl.addPlayer('Scott', 'Deters', 'BABA', 264.20)
+    // listCtrl.addPlayer('Alex', 'Deters', 'CSCO', 45.97)
+    // listCtrl.addPlayer('Caroline', 'Deters', 'DIS', 138.30)
 
     // Bob Schultz Family
-    listCtrl.addPlayer('Christo', 'Schultz', 'SDC', 13.39)
-    listCtrl.addPlayer('Emmie', 'Schultz', 'GOOGL', 1432.78)
+    // listCtrl.addPlayer('Christo', 'Schultz', 'SDC', 13.39)
+    listCtrl.addPlayer('Emmie', 'Schultz', 'BMBL', 67.31)
 
     // Jim Schultz Family
-    listCtrl.addPlayer('Jamie', 'Schultz', 'JHX', 21.02)
-    listCtrl.addPlayer('John', 'Schultz', 'DXC', 31.89)
-    listCtrl.addPlayer('Charlie', 'Schultz', 'YELP', 32.60)
+    listCtrl.addPlayer('Jamie', 'Schultz', 'XM', 52.57)
+    // listCtrl.addPlayer('John', 'Schultz', 'DXC', 31.89)
+    // listCtrl.addPlayer('Charlie', 'Schultz', 'YELP', 32.60)
 
     // Schmidt Family
-    listCtrl.addPlayer('Ryan', 'Schmidt', 'MDT', 115.36)
-    listCtrl.addPlayer('Mark', 'Schmidt', 'SBUX', 84.83)
-    listCtrl.addPlayer('Megan', 'Schmidt', 'AMZN', 2008.72)
-    listCtrl.addPlayer('Michael', 'Schmidt', 'NVCR', 81.46)
-    listCtrl.addPlayer('Sarah', 'Schmidt', 'SHOP', 465.66)
-    listCtrl.addPlayer('Laura', 'Schmidt', 'SNAP', 18.36)
+    // listCtrl.addPlayer('Ryan', 'Schmidt', 'AFTPY', 88.75) // having troubles finding this in api
+    listCtrl.addPlayer('Mark', 'Schmidt', 'PYPL', 259.85)
+    listCtrl.addPlayer('Megan', 'Schmidt', 'RVLV', 42.54)
+    listCtrl.addPlayer('Michael', 'Schmidt', 'OXY', 29.90)
+    listCtrl.addPlayer('Sarah', 'Schmidt', 'SHOP', 1149.44)
+    // listCtrl.addPlayer('Laura', 'Schmidt', 'AGYP', 0.39) // having troubles finding this in api
 
     // Jack Schultz Family
-    listCtrl.addPlayer('James', 'Schultz', 'AMD', 47.00)
-    listCtrl.addPlayer('Joseph', 'Schultz', 'MSFT', 170.23)
+    // listCtrl.addPlayer('James', 'Schultz', 'AMD', 47.00)
+    // listCtrl.addPlayer('Joseph', 'Schultz', 'MSFT', 170.23)
 
     // Kaldas Family
     // listCtrl.addPlayer('Nardeen', 'Kaldas', '-', null)
@@ -249,10 +249,10 @@ const controller = (function(listCtrl, UICtrl){
     // listCtrl.addPlayer('Joyce', 'Tawdros', '-', null)
 
     // Lacksen Family
-    listCtrl.addPlayer('Katherine', 'Lacksen', 'CLF', 7.02)
-    listCtrl.addPlayer('Elizabeth', 'Lacksen', 'SPOT', 141.27)
+    // listCtrl.addPlayer('Katherine', 'Lacksen', 'CLF', 7.02)
+    listCtrl.addPlayer('Elizabeth', 'Lacksen', 'EPD', 22.92)
     // listCtrl.addPlayer('Larry', 'Lacksen', '-', null)
-    listCtrl.addPlayer('Will', 'Lacksen', 'BE', 7.88)
+    listCtrl.addPlayer('Will', 'Lacksen', 'TSLA', 889.49)
 
     fetchPlayerData()
   }
